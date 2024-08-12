@@ -3,7 +3,6 @@ import { organizationSchema } from '../models/organization'
 
 export const organizationSubject = z.tuple([
   z.union([
-    z.literal('create'),
     z.literal('delete'),
     z.literal('manage'),
     z.literal('update'),
