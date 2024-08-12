@@ -3,6 +3,7 @@ import {
   CreateAbility,
   MongoAbility,
   AbilityBuilder,
+  subject,
 } from '@casl/ability'
 import { User } from './models/user'
 import { permissions } from './permissions'
@@ -37,7 +38,11 @@ export function defineAbilityFor(user: User) {
 
   permissions[user.role](user, builder)
 
-  const ability = builder.build()
+  const ability = builder.build({
+    detectSubjectType(subject) {
+      return subject.__typename
+    }
+  })
 
   return ability
 }
