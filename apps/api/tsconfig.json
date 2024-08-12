@@ -1,0 +1,8 @@
+{
+    "extends": "@saas/tsconfig/node.json",
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "esModuleInterop": true
+    }
+}
