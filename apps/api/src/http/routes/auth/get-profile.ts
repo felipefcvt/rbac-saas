@@ -24,7 +24,7 @@ export async function getProfile(app: FastifyInstance) {
         },
       },
     },
-    async (request, reply) => {
+    async (request: anu, reply: any) => {
       const userId  = await request.getCurrentUserId()
 
       const user = await prisma.user.findUnique({
