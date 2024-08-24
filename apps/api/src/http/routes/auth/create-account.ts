@@ -19,7 +19,7 @@ export async function createAccount(app: FastifyInstance) {
         }),
       },
     },
-    async (request, reply) => {
+    async (request: any, reply: any) => {
       const { name, email, password } = request.body
 
       const userWithSameEmail = await prisma.user.findUnique({

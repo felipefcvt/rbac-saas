@@ -18,7 +18,7 @@ export async function requestPasswordRecovery(app: FastifyInstance) {
         },
       },
     },
-    async (request, reply) => {
+    async (request: any, reply: any) => {
       const { email } = request.body
 
       const userFromEmail = await prisma.user.findUnique({
