@@ -28,7 +28,7 @@ export async function getProjects(app: FastifyInstance) {
                   id: z.string().uuid(),
                   description: z.string(),
                   name: z.string(),
-                  slug: z.string(),
+                  slug: z.string(),  
                   avatarUrl: z.string().nullable(),
                   organizationId: z.string().uuid(),
                   ownerId: z.string().uuid(),
