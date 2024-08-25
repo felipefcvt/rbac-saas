@@ -3,7 +3,6 @@ import {
   CreateAbility,
   MongoAbility,
   AbilityBuilder,
-  subject,
 } from '@casl/ability'
 import { User } from './models/user'
 import { permissions } from './permissions'
@@ -13,6 +12,9 @@ import { z } from 'zod'
 import { inviteSubject } from './subjects/invite'
 import { billingSubject } from './subjects/billing'
 import { organizationSubject } from './subjects/organization'
+
+export * from './roles'
+
 
 const appAbilitiesSchema = z.union([
   billingSubject,
