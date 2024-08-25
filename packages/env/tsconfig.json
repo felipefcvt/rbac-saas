@@ -1,4 +1,8 @@
 {
     "extends": "@saas/tsconfig/library.json",
     "include": ["index.ts"],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "esModuleInterop": true
+    }
 }
