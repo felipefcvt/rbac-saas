@@ -29,13 +29,13 @@ export async function getProject(app: FastifyInstance) {
                 name: z.string(),
                 description: z.string(),
                 slug: z.string(),
-                avatarUrl: z.string().nullable(),
+                avatarUrl: z.string().url().nullable(),
                 organizationId: z.string().uuid(),
                 ownerId: z.string().uuid(),
                 owner: z.object({
                   id: z.string().uuid(),
                   name: z.string().nullable(),
-                  avatarUrl: z.string().nullable(),
+                  avatarUrl: z.string().url().nullable(),
                 }),
               }),
             }),
@@ -52,7 +52,7 @@ export async function getProject(app: FastifyInstance) {
 
         if (cannot('get', 'Project')) {
           throw new UnauthorizedError(
-            `You're not allowed to see this projects.`,
+            `You're not allowed to see this projects.`
           )
         }
 
@@ -85,6 +85,6 @@ export async function getProject(app: FastifyInstance) {
         }
 
         return reply.send({ project })
-      },
+      }
     )
 }
