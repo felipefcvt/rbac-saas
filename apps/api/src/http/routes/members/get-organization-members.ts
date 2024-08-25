@@ -7,8 +7,6 @@ import { getUserPermissions } from '../../../utils/get-user-permissons'
 import { auth } from '../../middlewares/auth'
 import { UnauthorizedError } from '../_errors/unauthorized-error'
 
-
-
 export async function getMembers(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
