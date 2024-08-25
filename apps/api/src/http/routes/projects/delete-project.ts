@@ -1,7 +1,8 @@
-import { projectSchema } from '@saas/auth'
+import { projectSchema } from '@saas/auth/src/models/project'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
+
 import { prisma } from '../../../lib/prisma'
 import { getUserPermissions } from '../../../utils/get-user-permissons'
 import { auth } from '../../middlewares/auth'
