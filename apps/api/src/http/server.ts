@@ -32,6 +32,7 @@ import { updateProject } from './routes/projects/update-project'
 import { getMembers } from './routes/members/get-organization-members'
 import { updateMember } from './routes/members/update-member'
 import { removeMember } from './routes/members/remove-member'
+import { createInvite } from './routes/invites/create-invite'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -70,6 +71,7 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors)
 
+// Account
 app.register(createAccount)
 app.register(authenticateWithPassword)
 app.register(authenticateWithGithub)
@@ -77,6 +79,7 @@ app.register(getProfile)
 app.register(requestPasswordRecovery)
 app.register(resetPassword)
 
+// Organization
 app.register(createOrganization)
 app.register(getMembership)
 app.register(getOrganization)
@@ -85,15 +88,20 @@ app.register(updateOrganization)
 app.register(shutdownOrganization)
 app.register(transferOrganization)
 
+// Project
 app.register(createProject)
 app.register(deleteProject)
 app.register(getProject)
 app.register(getProjects)
 app.register(updateProject)
 
+// Members
 app.register(getMembers)
 app.register(updateMember)
 app.register(removeMember)
+
+// Invites
+app.register(createInvite)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server running!')
