@@ -9,18 +9,37 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { signInWithEmailAndPassword } from './actions'
-import { useActionState } from 'react'
+import { FormEvent, useState, useTransition } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function SignInForm() {
-  const [{ success, message, errors }, formAction, isPanding] = useActionState(
-    signInWithEmailAndPassword,
-    { success: false, message: null, errors: null }
-  )
+  const [isPanding, startTransition] = useTransition()
+  const [{ success, message, errors }, setFormState] = useState<{
+    success: boolean
+    message: string | null
+    errors: Record<string, string[]> | null
+  }>({
+    success: false,
+    message: null,
+    errors: null,
+  })
+
+  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const data = new FormData(form)
+
+    startTransition(async () => {
+      const state = await signInWithEmailAndPassword(data)
+
+      setFormState(state)
+    })
+  }
 
   return (
     <form
-      action={formAction}
+      onSubmit={handleSignIn}
       className="space-y-4 rounded border border-gray-900 p-5"
     >
       {success === false && message && (
