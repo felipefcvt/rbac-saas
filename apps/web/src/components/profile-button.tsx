@@ -33,8 +33,8 @@ export async function ProfileButton() {
         <Avatar className="size-8">
           {user.avatarUrl && <AvatarImage src={user.avatarUrl} />}
           {user.name && (
-            // <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
-            <AvatarImage src='https://github.com/felipefcvt.png'/>
+            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+            // <AvatarImage src='https://github.com/felipefcvt.png'/>
           )}
         </Avatar>
         <ChevronDown className="size-4 text-muted-foreground" />
