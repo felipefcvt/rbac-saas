@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
-
 import { signInWithGithub } from '@/http/sign-in-with-github'
 
 export async function GET(request: NextRequest) {
