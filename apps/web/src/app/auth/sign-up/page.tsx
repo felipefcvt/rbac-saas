@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator'
 
 export default function SignUpPage() {
   return (
-    <form action="" className="space-y-4">
+    <form action="" className="space-y-4 rounded border p-6">
       <div className="space-y-1">
         <Label htmlFor="name">Name</Label>
         <Input name="name" id="name" />

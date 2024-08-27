@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 
 export default function ForgotPasswordPage() {
   return (
-    <form action="" className="space-y-4">
+    <form action="" className="space-y-4 border rounded p-6">
       <div className="space-y-1">
         <Label htmlFor="email">E-mail</Label>
         <Input name="email" type="email" id="email" />
