@@ -9,37 +9,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { signInWithEmailAndPassword } from './actions'
-import { FormEvent, useState, useTransition } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useFormState } from '@/hook/use-form-state'
 
 export default function SignInForm() {
-  const [isPanding, startTransition] = useTransition()
-  const [{ success, message, errors }, setFormState] = useState<{
-    success: boolean
-    message: string | null
-    errors: Record<string, string[]> | null
-  }>({
-    success: false,
-    message: null,
-    errors: null,
-  })
-
-  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const form = event.currentTarget
-    const data = new FormData(form)
-
-    startTransition(async () => {
-      const state = await signInWithEmailAndPassword(data)
-
-      setFormState(state)
-    })
-  }
+  const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
+    signInWithEmailAndPassword
+  )
 
   return (
     <form
-      onSubmit={handleSignIn}
+      onSubmit={handleSubmit}
       className="space-y-4 rounded border border-gray-900 p-5"
     >
       {success === false && message && (
@@ -81,8 +61,8 @@ export default function SignInForm() {
         </Link>
       </div>
 
-      <Button className="w-full" type="submit" disabled={isPanding}>
-        {isPanding ? (
+      <Button className="w-full" type="submit" disabled={isPending}>
+        {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
           'Sign in with e-mail'
