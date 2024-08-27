@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader2 } from 'lucide-react'
+import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import githubIcon from '@/assets/github-icon.svg'
@@ -10,25 +10,49 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { signInWithEmailAndPassword } from './actions'
 import { useActionState } from 'react'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function SignInForm() {
-  const [state, formAction, isPanding] = useActionState(
+  const [{ success, message, errors }, formAction, isPanding] = useActionState(
     signInWithEmailAndPassword,
-    null
+    { success: false, message: null, errors: null }
   )
 
   return (
-    <form action={formAction} className="space-y-4">
-      <h1>{state}</h1>
+    <form
+      action={formAction}
+      className="space-y-4 rounded border border-gray-900 p-5"
+    >
+      {success === false && message && (
+        <Alert variant="destructive">
+          <AlertTriangle className="size-4" />
+          <AlertTitle>Sign in failed!</AlertTitle>
+          <AlertDescription>
+            <p>{message}</p>
+          </AlertDescription>
+        </Alert>
+      )}
 
       <div className="space-y-1">
         <Label htmlFor="email">E-mail</Label>
         <Input name="email" type="email" id="email" />
+
+        {errors?.email && (
+          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            {errors.email[0]}
+          </p>
+        )}
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="password">Password</Label>
         <Input name="password" type="password" id="password" />
+
+        {errors?.password && (
+          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            {errors.password[0]}
+          </p>
+        )}
 
         <Link
           href="/auth/forgot-password"
@@ -39,7 +63,11 @@ export default function SignInForm() {
       </div>
 
       <Button className="w-full" type="submit" disabled={isPanding}>
-        {isPanding ? <Loader2 className='size-4 animate-spin' /> : 'Sign in with e-mail'}
+        {isPanding ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          'Sign in with e-mail'
+        )}
       </Button>
 
       <Button variant="link" className="w-full" size="sm" asChild>
