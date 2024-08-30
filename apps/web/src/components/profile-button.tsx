@@ -28,7 +28,7 @@ export async function ProfileButton() {
       <DropdownMenuTrigger className="flex items-center gap-3 outline-none">
         <div className="flex flex-col items-end">
           <span className="text-sm font-medium">{user.name}</span>
-          {/* <span className="text-xs text-muted-foreground">{user.email}</span> */}
+          <span className="text-xs text-muted-foreground">{user.email}</span>
         </div>
         <Avatar className="size-8">
           {user.avatarUrl && <AvatarImage src={user.avatarUrl} />}

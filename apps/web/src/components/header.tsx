@@ -14,7 +14,7 @@ export async function Header() {
   const permissions = await ability()
 
   return (
-    <div className="mx-auto flex items-center justify-around py-2 max-w-screen-xl">
+    <div className="mx-auto flex items-center justify-around py-2 w-full border-b">
       <div className="flex items-center gap-3">
         <Image
           src={ghIcon}
