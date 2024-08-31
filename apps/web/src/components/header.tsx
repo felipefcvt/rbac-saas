@@ -28,8 +28,7 @@ export async function Header() {
         {permissions?.can('get', 'Project') && (
           <>
             <Slash className="size-3 -rotate-[24deg] text-border" />
-            <h1>Admin</h1>
-            {/* <ProjectSwitcher /> */}
+            <ProjectSwitcher />
           </>
         )}
       </div>

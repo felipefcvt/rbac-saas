@@ -26,10 +26,12 @@ export function ProjectSwitcher() {
   }>()
 
   const { data, isLoading } = useQuery({
-    queryKey: [orgSlug, 'projects'],
+    queryKey: [orgSlug, 'project'],
     queryFn: () => getProjects(orgSlug),
     enabled: !!orgSlug,
   })
+
+  console.log(data)
 
   const currentProject =
     data && projectSlug
@@ -90,6 +92,7 @@ export function ProjectSwitcher() {
                       <AvatarFallback />
                     </Avatar>
                     <span className="line-clamp-1">{project.name}</span>
+                    <span>name</span>
                   </Link>
                 </DropdownMenuItem>
               )
