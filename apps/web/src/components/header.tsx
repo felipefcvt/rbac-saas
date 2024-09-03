@@ -15,7 +15,7 @@ export async function Header() {
   const permissions = await ability()
 
   return (
-    <div className="mx-auto flex w-full items-center justify-around border-b py-2">
+    <div className="mx-auto flex w-full items-center justify-around py-2">
       <div className="flex items-center gap-3">
         <Link href="/">
           <Image src={ghIcon} className="size-6 dark:invert" alt="Rocketseat" />
