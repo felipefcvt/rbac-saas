@@ -26,16 +26,14 @@ export function ProjectSwitcher() {
   }>()
 
   const { data, isLoading } = useQuery({
-    queryKey: [orgSlug, 'project'],
+    queryKey: [orgSlug, 'projects'],
     queryFn: () => getProjects(orgSlug),
     enabled: !!orgSlug,
   })
 
-  console.log(data)
-
   const currentProject =
     data && projectSlug
-      ? data.projects.find((project: any) => project.slug === projectSlug)
+      ? data.projects.find((project) => project.slug === projectSlug)
       : null
 
   return (
@@ -81,7 +79,7 @@ export function ProjectSwitcher() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Projects</DropdownMenuLabel>
           {data &&
-            data.projects.map((project: any) => {
+            data.projects.map((project) => {
               return (
                 <DropdownMenuItem key={project.id} asChild>
                   <Link href={`/org/${orgSlug}/project/${project.slug}`}>
@@ -92,7 +90,6 @@ export function ProjectSwitcher() {
                       <AvatarFallback />
                     </Avatar>
                     <span className="line-clamp-1">{project.name}</span>
-                    <span>name</span>
                   </Link>
                 </DropdownMenuItem>
               )
