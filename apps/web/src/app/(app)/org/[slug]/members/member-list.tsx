@@ -1,4 +1,4 @@
-import { organizationSchema } from '@saas/auth'
+
 import { ArrowLeftRight, Crown, UserMinus } from 'lucide-react'
 import Image from 'next/image'
 
@@ -12,6 +12,7 @@ import { getOrganization } from '@/http/get-organization'
 
 import { removeMemberAction } from './actions'
 import { UpdateMemberRoleSelect } from './update-member-role-select'
+import { organizationSchema } from '@saas/auth/src/models/organization'
 
 export async function MemberList() {
   const currentOrg = getCurrentOrg()

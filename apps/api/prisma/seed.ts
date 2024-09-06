@@ -14,7 +14,8 @@ async function seed() {
     data: {
       name: 'John Doe',
       email: 'john@acme.com',
-      avatarUrl: 'https://github.com/felipefcvt.png',
+      // avatarUrl: 'https://github.com/felipefcvt.png',
+      avatarUrl: '',
       passwordHash,
     },
   })
